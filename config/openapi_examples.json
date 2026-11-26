@@ -1,0 +1,952 @@
+{
+  "post /api/token/": {
+    "status": "200",
+    "response": {
+      "token": "TOKEN_DE_EJEMPLO",
+      "expira": "2026-11-27T15:00:44.373657Z"
+    },
+    "request": {
+      "username": "demo_bibliotecario",
+      "password": "CONTRASEÑA_LOCAL"
+    }
+  },
+  "get /api/autores/": {
+    "status": "200",
+    "response": {
+      "count": 5,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 1,
+          "nombre": "Rosa Vargas",
+          "nacionalidad": "Peruana",
+          "biografia": "Autoría de textos universitarios en ingenieria."
+        }
+      ]
+    }
+  },
+  "get /api/autores/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "nombre": "Rosa Vargas",
+      "nacionalidad": "Peruana",
+      "biografia": "Autoría de textos universitarios en ingenieria."
+    }
+  },
+  "get /api/libros/": {
+    "status": "200",
+    "response": {
+      "count": 30,
+      "next": null,
+      "previous": "http://localhost:8000/api/libros/?categoria=ingenieria&ordering=-anio",
+      "results": [
+        {
+          "id": 48,
+          "url": "http://localhost:8000/api/libros/48/",
+          "isbn": "9786121300047",
+          "titulo": "Redes y protocolos de Internet, edición 10",
+          "autor": {
+            "id": 3,
+            "nombre": "Ana Salazar",
+            "nacionalidad": "Peruana",
+            "biografia": "Autoría de textos universitarios en ingenieria."
+          },
+          "editorial": "Fondo Editorial Universitario",
+          "anio": 2019,
+          "categoria": "ingenieria",
+          "stock": 9,
+          "estante": "I-12",
+          "piso": 3,
+          "disponible": true
+        }
+      ]
+    }
+  },
+  "get /api/libros/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "url": "http://localhost:8000/api/libros/1/",
+      "isbn": "9786121300000",
+      "titulo": "Algoritmos y estructuras de datos, edición 1",
+      "autor": {
+        "id": 1,
+        "nombre": "Rosa Vargas",
+        "nacionalidad": "Peruana",
+        "biografia": "Autoría de textos universitarios en ingenieria."
+      },
+      "editorial": "Fondo Editorial Universitario",
+      "anio": 2016,
+      "categoria": "ingenieria",
+      "stock": 4,
+      "estante": "I-01",
+      "piso": 1,
+      "disponible": true
+    }
+  },
+  "get /api/usuarios/": {
+    "status": "200",
+    "response": {
+      "count": 10,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "nombre": "Lucía Quispe",
+          "tipo": "docente",
+          "carrera": "Ingeniería de Sistemas"
+        }
+      ]
+    }
+  },
+  "get /api/usuarios/perfil/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "nombre": "Lucía Quispe",
+      "tipo": "docente",
+      "carrera": "Ingeniería de Sistemas",
+      "email": "demo_cliente01@example.test",
+      "telefono": "",
+      "historial": [
+        {
+          "id": 31,
+          "usuario": 1,
+          "libro": 31,
+          "fecha_prestamo": "2026-11-26",
+          "fecha_devolucion": "2026-12-03",
+          "devuelto_en": "2026-11-26",
+          "estado": "devuelto",
+          "dias_restantes": 7,
+          "multa": 0
+        }
+      ],
+      "prestamos_activos": 2
+    }
+  },
+  "get /api/usuarios/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "nombre": "Lucía Quispe",
+      "tipo": "docente",
+      "carrera": "Ingeniería de Sistemas",
+      "email": "demo_cliente01@example.test",
+      "telefono": "",
+      "historial": [
+        {
+          "id": 31,
+          "usuario": 1,
+          "libro": 31,
+          "fecha_prestamo": "2026-11-26",
+          "fecha_devolucion": "2026-12-03",
+          "devuelto_en": "2026-11-26",
+          "estado": "devuelto",
+          "dias_restantes": 7,
+          "multa": 0
+        }
+      ],
+      "prestamos_activos": 2
+    }
+  },
+  "post /api/prestamos/": {
+    "status": "201",
+    "response": {
+      "id": 32,
+      "usuario": 1,
+      "libro": 31,
+      "fecha_prestamo": "2026-11-26",
+      "fecha_devolucion": "2026-12-03",
+      "devuelto_en": null,
+      "estado": "activo",
+      "dias_restantes": 7,
+      "multa": 0
+    },
+    "request": {
+      "usuario": 1,
+      "libro": 31,
+      "fecha_devolucion": "2027-01-15"
+    }
+  },
+  "get /api/prestamos/": {
+    "status": "200",
+    "response": {
+      "count": 5,
+      "next": "http://localhost:8000/api/prestamos/?limit=3&offset=3",
+      "previous": null,
+      "results": [
+        {
+          "id": 32,
+          "usuario": 1,
+          "libro": 31,
+          "fecha_prestamo": "2026-11-26",
+          "fecha_devolucion": "2026-12-03",
+          "devuelto_en": null,
+          "estado": "activo",
+          "dias_restantes": 7,
+          "multa": 0
+        }
+      ]
+    }
+  },
+  "get /api/prestamos/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 32,
+      "usuario": 1,
+      "libro": 31,
+      "fecha_prestamo": "2026-11-26",
+      "fecha_devolucion": "2026-12-03",
+      "devuelto_en": null,
+      "estado": "activo",
+      "dias_restantes": 7,
+      "multa": 0
+    }
+  },
+  "get /api/prestamos/vencidos/": {
+    "status": "200",
+    "response": {
+      "count": 10,
+      "next": "http://localhost:8000/api/prestamos/vencidos/?limit=3&offset=3",
+      "previous": null,
+      "results": [
+        {
+          "id": 29,
+          "usuario": 10,
+          "libro": 29,
+          "fecha_prestamo": "2026-11-10",
+          "fecha_devolucion": "2026-11-25",
+          "devuelto_en": null,
+          "estado": "vencido",
+          "dias_restantes": -1,
+          "multa": 2
+        }
+      ]
+    }
+  },
+  "post /api/prestamos/{id}/devolver/": {
+    "status": "200",
+    "response": {
+      "id": 32,
+      "usuario": 1,
+      "libro": 31,
+      "fecha_prestamo": "2026-11-26",
+      "fecha_devolucion": "2026-12-03",
+      "devuelto_en": "2026-11-26",
+      "estado": "devuelto",
+      "dias_restantes": 7,
+      "multa": 0
+    }
+  },
+  "post /api/libros/": {
+    "status": "201",
+    "response": {
+      "id": 52,
+      "url": "http://localhost:8000/api/libros/52/",
+      "isbn": "9785705283397",
+      "titulo": "Algoritmos aplicados",
+      "autor": {
+        "id": 1,
+        "nombre": "Rosa Vargas",
+        "nacionalidad": "Peruana",
+        "biografia": "Autoría de textos universitarios en ingenieria."
+      },
+      "editorial": "UNCP",
+      "anio": 2025,
+      "categoria": "ingenieria",
+      "stock": 6,
+      "estante": "A-01",
+      "piso": 2,
+      "disponible": true
+    },
+    "request": {
+      "isbn": "9785705283397",
+      "titulo": "Algoritmos aplicados",
+      "autor_id": 1,
+      "editorial": "UNCP",
+      "anio": 2025,
+      "categoria": "ingenieria",
+      "stock": 6,
+      "estante": "A-01",
+      "piso": 2
+    }
+  },
+  "put /api/libros/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 52,
+      "url": "http://localhost:8000/api/libros/52/",
+      "isbn": "9785705283397",
+      "titulo": "Algoritmos aplicados II",
+      "autor": {
+        "id": 1,
+        "nombre": "Rosa Vargas",
+        "nacionalidad": "Peruana",
+        "biografia": "Autoría de textos universitarios en ingenieria."
+      },
+      "editorial": "UNCP",
+      "anio": 2025,
+      "categoria": "ingenieria",
+      "stock": 7,
+      "estante": "A-01",
+      "piso": 2,
+      "disponible": true
+    },
+    "request": {
+      "isbn": "9785705283397",
+      "titulo": "Algoritmos aplicados II",
+      "autor_id": 1,
+      "editorial": "UNCP",
+      "anio": 2025,
+      "categoria": "ingenieria",
+      "stock": 7,
+      "estante": "A-01",
+      "piso": 2
+    }
+  },
+  "patch /api/libros/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 52,
+      "url": "http://localhost:8000/api/libros/52/",
+      "isbn": "9785705283397",
+      "titulo": "Algoritmos aplicados II",
+      "autor": {
+        "id": 1,
+        "nombre": "Rosa Vargas",
+        "nacionalidad": "Peruana",
+        "biografia": "Autoría de textos universitarios en ingenieria."
+      },
+      "editorial": "UNCP",
+      "anio": 2025,
+      "categoria": "ingenieria",
+      "stock": 8,
+      "estante": "A-01",
+      "piso": 2,
+      "disponible": true
+    },
+    "request": {
+      "stock": 8
+    }
+  },
+  "delete /api/libros/{id}/": {
+    "status": "204"
+  },
+  "get /api/categorias/": {
+    "status": "200",
+    "response": {
+      "count": 4,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 1,
+          "slug": "laptops",
+          "nombre": "Laptops",
+          "descripcion": "Catálogo TecnoMarket de laptops.",
+          "imagen": ""
+        }
+      ]
+    }
+  },
+  "get /api/categorias/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "slug": "laptops",
+      "nombre": "Laptops",
+      "descripcion": "Catálogo TecnoMarket de laptops.",
+      "imagen": ""
+    }
+  },
+  "get /api/vendedores/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 3,
+      "username": "demo_vendedor"
+    }
+  },
+  "get /api/productos/": {
+    "status": "200",
+    "response": {
+      "count": 25,
+      "next": "http://localhost:8000/api/productos/?categoria=laptops&ordering=-precio&page=2&precio_max=2000&precio_min=500",
+      "previous": null,
+      "results": [
+        {
+          "id": 21,
+          "sku": "TM-0021",
+          "nombre": "Laptop Dell Serie 120",
+          "descripcion": "Laptop para estudio, trabajo y uso diario.",
+          "marca": "dell",
+          "categoria": {
+            "id": 1,
+            "slug": "laptops",
+            "nombre": "Laptops",
+            "descripcion": "Catálogo TecnoMarket de laptops.",
+            "imagen": ""
+          },
+          "precio": "1850.00",
+          "descuento": 0,
+          "stock": 28,
+          "imagenes": [],
+          "especificaciones": {
+            "ram_gb": 16,
+            "ssd_gb": 512
+          },
+          "vendedor": "http://localhost:8000/api/vendedores/3/",
+          "resenas": "http://localhost:8000/api/productos/21/rese%C3%B1as/",
+          "precio_con_descuento": "1850.00",
+          "rating_promedio": 3.0,
+          "disponible": true,
+          "fecha_creacion": "2026-11-26T09:56:58.398384-05:00"
+        }
+      ]
+    }
+  },
+  "get /api/productos/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "sku": "TM-0001",
+      "nombre": "Laptop Lenovo Serie 100",
+      "descripcion": "Laptop para estudio, trabajo y uso diario.",
+      "marca": "lenovo",
+      "categoria": {
+        "id": 1,
+        "slug": "laptops",
+        "nombre": "Laptops",
+        "descripcion": "Catálogo TecnoMarket de laptops.",
+        "imagen": ""
+      },
+      "precio": "1350.00",
+      "descuento": 10,
+      "stock": 8,
+      "imagenes": [],
+      "especificaciones": {
+        "ram_gb": 16,
+        "ssd_gb": 512
+      },
+      "vendedor": "http://localhost:8000/api/vendedores/3/",
+      "resenas": "http://localhost:8000/api/productos/1/rese%C3%B1as/",
+      "precio_con_descuento": "1215.00",
+      "rating_promedio": 4.0,
+      "disponible": true,
+      "fecha_creacion": "2026-11-26T09:56:58.377298-05:00"
+    }
+  },
+  "get /api/productos/{id}/reseñas/": {
+    "status": "200",
+    "response": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 1,
+          "usuario": "demo_cliente01",
+          "producto": 1,
+          "calificacion": 4,
+          "titulo": "Compra recibida",
+          "comentario": "El producto llegó completo y coincide con las especificaciones.",
+          "fecha_creacion": "2026-11-26T09:56:58.486432-05:00",
+          "es_compra_verificada": true
+        }
+      ]
+    }
+  },
+  "post /api/productos/": {
+    "status": "201",
+    "response": {
+      "id": 102,
+      "sku": "TM-DEMO-1795705284316",
+      "nombre": "Laptop Ryzen 7",
+      "descripcion": "Equipo para laboratorio",
+      "marca": "lenovo",
+      "categoria": {
+        "id": 1,
+        "slug": "laptops",
+        "nombre": "Laptops",
+        "descripcion": "Catálogo TecnoMarket de laptops.",
+        "imagen": ""
+      },
+      "precio": "1899.00",
+      "descuento": 0,
+      "stock": 5,
+      "imagenes": [],
+      "especificaciones": {},
+      "vendedor": "http://localhost:8000/api/vendedores/3/",
+      "resenas": "http://localhost:8000/api/productos/102/rese%C3%B1as/",
+      "precio_con_descuento": "1899.00",
+      "rating_promedio": null,
+      "disponible": true,
+      "fecha_creacion": "2026-11-26T10:01:24.353184-05:00"
+    },
+    "request": {
+      "sku": "TM-DEMO-1795705284316",
+      "nombre": "Laptop Ryzen 7",
+      "descripcion": "Equipo para laboratorio",
+      "marca": "lenovo",
+      "categoria_id": 1,
+      "precio": "1899.00",
+      "stock": 5
+    }
+  },
+  "put /api/productos/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 102,
+      "sku": "TM-DEMO-1795705284316",
+      "nombre": "Laptop Ryzen 7",
+      "descripcion": "Equipo para laboratorio",
+      "marca": "lenovo",
+      "categoria": {
+        "id": 1,
+        "slug": "laptops",
+        "nombre": "Laptops",
+        "descripcion": "Catálogo TecnoMarket de laptops.",
+        "imagen": ""
+      },
+      "precio": "1899.00",
+      "descuento": 0,
+      "stock": 6,
+      "imagenes": [],
+      "especificaciones": {},
+      "vendedor": "http://localhost:8000/api/vendedores/3/",
+      "resenas": "http://localhost:8000/api/productos/102/rese%C3%B1as/",
+      "precio_con_descuento": "1899.00",
+      "rating_promedio": null,
+      "disponible": true,
+      "fecha_creacion": "2026-11-26T10:01:24.353184-05:00"
+    },
+    "request": {
+      "sku": "TM-DEMO-1795705284316",
+      "nombre": "Laptop Ryzen 7",
+      "descripcion": "Equipo para laboratorio",
+      "marca": "lenovo",
+      "categoria_id": 1,
+      "precio": "1899.00",
+      "stock": 6
+    }
+  },
+  "patch /api/productos/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 102,
+      "sku": "TM-DEMO-1795705284316",
+      "nombre": "Laptop Ryzen 7",
+      "descripcion": "Equipo para laboratorio",
+      "marca": "lenovo",
+      "categoria": {
+        "id": 1,
+        "slug": "laptops",
+        "nombre": "Laptops",
+        "descripcion": "Catálogo TecnoMarket de laptops.",
+        "imagen": ""
+      },
+      "precio": "1899.00",
+      "descuento": 10,
+      "stock": 6,
+      "imagenes": [],
+      "especificaciones": {},
+      "vendedor": "http://localhost:8000/api/vendedores/3/",
+      "resenas": "http://localhost:8000/api/productos/102/rese%C3%B1as/",
+      "precio_con_descuento": "1709.10",
+      "rating_promedio": null,
+      "disponible": true,
+      "fecha_creacion": "2026-11-26T10:01:24.353184-05:00"
+    },
+    "request": {
+      "descuento": 10
+    }
+  },
+  "get /api/carrito/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [],
+      "cupon": null,
+      "subtotal": "0.00",
+      "impuestos": "0.00",
+      "total": "0.00",
+      "total_con_descuento": "0.00",
+      "cantidad_items": 0
+    }
+  },
+  "post /api/carrito/vaciar/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [],
+      "cupon": null,
+      "subtotal": "0.00",
+      "impuestos": "0.00",
+      "total": "0.00",
+      "total_con_descuento": "0.00",
+      "cantidad_items": 0
+    }
+  },
+  "post /api/carrito/agregar/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "cantidad": 1,
+          "precio_unitario": "1709.10"
+        }
+      ],
+      "cupon": null,
+      "subtotal": "1709.10",
+      "impuestos": "307.64",
+      "total": "2016.74",
+      "total_con_descuento": "2016.74",
+      "cantidad_items": 1
+    },
+    "request": {
+      "producto": "102",
+      "cantidad": 1
+    }
+  },
+  "post /api/carrito/actualizar/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "cantidad": 2,
+          "precio_unitario": "1709.10"
+        }
+      ],
+      "cupon": null,
+      "subtotal": "3418.20",
+      "impuestos": "615.28",
+      "total": "4033.48",
+      "total_con_descuento": "4033.48",
+      "cantidad_items": 2
+    },
+    "request": {
+      "producto": "102",
+      "cantidad": 2
+    }
+  },
+  "post /api/carrito/eliminar/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [],
+      "cupon": null,
+      "subtotal": "0.00",
+      "impuestos": "0.00",
+      "total": "0.00",
+      "total_con_descuento": "0.00",
+      "cantidad_items": 0
+    },
+    "request": {
+      "producto": "102"
+    }
+  },
+  "post /api/carrito/cupon/": {
+    "status": "200",
+    "response": {
+      "id": 1,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "cantidad": 2,
+          "precio_unitario": "1709.10"
+        }
+      ],
+      "cupon": "SEMANA13",
+      "subtotal": "3418.20",
+      "impuestos": "615.28",
+      "total": "4033.48",
+      "total_con_descuento": "3630.13",
+      "cantidad_items": 2
+    },
+    "request": {
+      "codigo": "SEMANA13"
+    }
+  },
+  "post /api/carrito/checkout/": {
+    "status": "201",
+    "response": {
+      "id": 53,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "precio_unitario": "1709.10",
+          "cantidad": 2
+        }
+      ],
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia",
+      "estado": "pendiente",
+      "total": "3630.13",
+      "fecha_creacion": "2026-11-26T10:01:25.310482-05:00",
+      "numero_seguimiento": "",
+      "tiempo_estimado_entrega": {
+        "desde": "2026-11-29",
+        "hasta": "2026-12-01"
+      }
+    },
+    "request": {
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia"
+    }
+  },
+  "patch /api/ordenes/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 53,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "precio_unitario": "1709.10",
+          "cantidad": 2
+        }
+      ],
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia",
+      "estado": "pagada",
+      "total": "3630.13",
+      "fecha_creacion": "2026-11-26T10:01:25.310482-05:00",
+      "numero_seguimiento": "",
+      "tiempo_estimado_entrega": {
+        "desde": "2026-11-29",
+        "hasta": "2026-12-01"
+      }
+    },
+    "request": {
+      "estado": "pagada"
+    }
+  },
+  "get /api/ordenes/": {
+    "status": "200",
+    "response": {
+      "count": 6,
+      "next": "http://localhost:8000/api/ordenes/?limit=3&offset=3",
+      "previous": null,
+      "results": [
+        {
+          "id": 53,
+          "usuario": 5,
+          "items": [
+            {
+              "producto": 102,
+              "sku": "TM-DEMO-1795705284316",
+              "nombre": "Laptop Ryzen 7",
+              "precio_unitario": "1709.10",
+              "cantidad": 2
+            }
+          ],
+          "direccion_envio": "Av. Real 250, Huancayo",
+          "metodo_pago": "transferencia",
+          "estado": "entregada",
+          "total": "3630.13",
+          "fecha_creacion": "2026-11-26T10:01:25.310482-05:00",
+          "numero_seguimiento": "TM-5A894F6469D8",
+          "tiempo_estimado_entrega": {
+            "desde": "2026-11-29",
+            "hasta": "2026-12-01"
+          }
+        }
+      ]
+    }
+  },
+  "get /api/ordenes/mis-ordenes/": {
+    "status": "200",
+    "response": {
+      "count": 6,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 53,
+          "usuario": 5,
+          "items": [
+            {
+              "producto": 102,
+              "sku": "TM-DEMO-1795705284316",
+              "nombre": "Laptop Ryzen 7",
+              "precio_unitario": "1709.10",
+              "cantidad": 2
+            }
+          ],
+          "direccion_envio": "Av. Real 250, Huancayo",
+          "metodo_pago": "transferencia",
+          "estado": "entregada",
+          "total": "3630.13",
+          "fecha_creacion": "2026-11-26T10:01:25.310482-05:00",
+          "numero_seguimiento": "TM-5A894F6469D8",
+          "tiempo_estimado_entrega": {
+            "desde": "2026-11-29",
+            "hasta": "2026-12-01"
+          }
+        }
+      ]
+    }
+  },
+  "get /api/ordenes/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 53,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "precio_unitario": "1709.10",
+          "cantidad": 2
+        }
+      ],
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia",
+      "estado": "entregada",
+      "total": "3630.13",
+      "fecha_creacion": "2026-11-26T10:01:25.310482-05:00",
+      "numero_seguimiento": "TM-5A894F6469D8",
+      "tiempo_estimado_entrega": {
+        "desde": "2026-11-29",
+        "hasta": "2026-12-01"
+      }
+    }
+  },
+  "post /api/reseñas/": {
+    "status": "201",
+    "response": {
+      "id": 102,
+      "usuario": "demo_cliente01",
+      "producto": 102,
+      "calificacion": 5,
+      "titulo": "Excelente",
+      "comentario": "Cumple las especificaciones.",
+      "fecha_creacion": "2026-11-26T10:01:25.951028-05:00",
+      "es_compra_verificada": true
+    },
+    "request": {
+      "producto": "102",
+      "calificacion": 5,
+      "titulo": "Excelente",
+      "comentario": "Cumple las especificaciones."
+    }
+  },
+  "get /api/reseñas/": {
+    "status": "200",
+    "response": {
+      "count": 101,
+      "next": "http://localhost:8000/api/rese%C3%B1as/?page=2",
+      "previous": null,
+      "results": [
+        {
+          "id": 102,
+          "usuario": "demo_cliente01",
+          "producto": 102,
+          "calificacion": 5,
+          "titulo": "Excelente",
+          "comentario": "Cumple las especificaciones.",
+          "fecha_creacion": "2026-11-26T10:01:25.951028-05:00",
+          "es_compra_verificada": true
+        }
+      ]
+    }
+  },
+  "get /api/reseñas/{id}/": {
+    "status": "200",
+    "response": {
+      "id": 102,
+      "usuario": "demo_cliente01",
+      "producto": 102,
+      "calificacion": 5,
+      "titulo": "Excelente",
+      "comentario": "Cumple las especificaciones.",
+      "fecha_creacion": "2026-11-26T10:01:25.951028-05:00",
+      "es_compra_verificada": true
+    }
+  },
+  "delete /api/reseñas/{id}/": {
+    "status": "204"
+  },
+  "post /api/ordenes/": {
+    "status": "201",
+    "response": {
+      "id": 54,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "precio_unitario": "1709.10",
+          "cantidad": 1
+        }
+      ],
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia",
+      "estado": "pendiente",
+      "total": "2016.74",
+      "fecha_creacion": "2026-11-26T10:01:26.399403-05:00",
+      "numero_seguimiento": "",
+      "tiempo_estimado_entrega": {
+        "desde": "2026-11-29",
+        "hasta": "2026-12-01"
+      }
+    },
+    "request": {
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia"
+    }
+  },
+  "post /api/ordenes/{id}/cancelar/": {
+    "status": "200",
+    "response": {
+      "id": 54,
+      "usuario": 5,
+      "items": [
+        {
+          "producto": 102,
+          "sku": "TM-DEMO-1795705284316",
+          "nombre": "Laptop Ryzen 7",
+          "precio_unitario": "1709.10",
+          "cantidad": 1
+        }
+      ],
+      "direccion_envio": "Av. Real 250, Huancayo",
+      "metodo_pago": "transferencia",
+      "estado": "cancelada",
+      "total": "2016.74",
+      "fecha_creacion": "2026-11-26T10:01:26.399403-05:00",
+      "numero_seguimiento": "",
+      "tiempo_estimado_entrega": {
+        "desde": "2026-11-29",
+        "hasta": "2026-12-01"
+      }
+    }
+  },
+  "delete /api/productos/{id}/": {
+    "status": "204"
+  }
+}
